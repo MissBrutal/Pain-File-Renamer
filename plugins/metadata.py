@@ -45,7 +45,7 @@ async def query_metadata(bot: Client, query: CallbackQuery):
         await query.message.delete()
         try:
             try:
-                metadata = await bot.ask(text=script.METADATA_TXT, chat_id=query.from_user.id, filters=filters.text, timeout=30, disable_web_page_preview=True, reply_to_message_id=query.message.id)
+                metadata = await bot.ask(text=config.METADATA_TXT, chat_id=query.from_user.id, filters=filters.text, timeout=30, disable_web_page_preview=True, reply_to_message_id=query.message.id)
             except ListenerTimeout:
                 await query.message.reply_text("⚠️ Error !!\n\n**Request Timed Out.**\n\nRestart By Using /metadata", reply_to_message_id=query.message.id)
                 return
