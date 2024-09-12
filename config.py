@@ -80,6 +80,14 @@ Exᴀᴍᴩʟᴇ:- <code> /set_caption 📕 Fɪʟᴇ Nᴀᴍᴇ: {filename}
 
 <b>⦿ Dᴇᴠᴇʟᴏᴘᴇʀ:</b> <a href=https://t.me/MisterBrutal> Mɪsᴛᴇʀ Bʀᴜᴛᴀʟ 😎</a>
 """
+    METADATA_TXT = """<b><u>🖼️  HOW TO SET CUSTOM METADATA</u></b>
+
+For Example :-
+
+<code>By @Madflix_Bots</code>
+
+💬 For Any Help Contact @MadflixOfficials
+"""
 
     SEND_METADATA = """
 ❪ SET CUSTOM METADATA ❫
