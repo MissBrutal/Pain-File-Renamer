@@ -2,7 +2,7 @@ from pyrogram import Client, filters
 from pyrogram.types import Message, CallbackQuery, InlineKeyboardButton, InlineKeyboardMarkup
 from helper.database import *
 from pyromod.exceptions import ListenerTimeout
-from script import *
+from config import *
 
 
 
