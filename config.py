@@ -94,7 +94,7 @@ For Example :-
 
 ☞ Fᴏʀ Exᴀᴍᴘʟᴇ:-
 
-◦ <code> -map 0 -c:s copy -c:a copy -c:v copy -metadata title="Powered By:- @MisterBrutal" -metadata author="@MisterBrutal" -metadata:s:s title="Subtitled By :- @MisterBrutal" -metadata:s:a title="By :- @MisterBrutal" -metadata:s:v title="By:- @MisterBrutal" </code>
+◦ <code> -map 0 -c:s copy -c:a copy -c:v copy -metadata title="Powered By:- @MisterBrutal" -metadata author="@MisterBrutal" -metadata:s:s title="Subtitled By :- @MisterBrutal" -metadata:s:a title=" @MisterBrutal" -metadata:s:v title=" @MisterBrutal" </code>
 
 📥 Fᴏʀ Hᴇʟᴘ Cᴏɴᴛ. @Brutal_Support_Chat
 """
