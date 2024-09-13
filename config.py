@@ -84,9 +84,9 @@ Exᴀᴍᴩʟᴇ:- <code> /set_caption 📕 Fɪʟᴇ Nᴀᴍᴇ: {filename}
 
 For Example :-
 
-<code>By @Madflix_Bots</code>
+<code>By @MisterBrutal</code>
 
-💬 For Any Help Contact @MadflixOfficials
+💬 For Any Help Contact @MisterBrutal
 """
 
     SEND_METADATA = """
@@ -96,7 +96,7 @@ For Example :-
 
 ◦ <code> -map 0 -c:s copy -c:a copy -c:v copy -metadata title="Powered By:- @MisterBrutal" -metadata author="@MisterBrutal" -metadata:s:s title="Subtitled By :- @MisterBrutal" -metadata:s:a title=" @MisterBrutal" -metadata:s:v title=" @MisterBrutal" </code>
 
-📥 Fᴏʀ Hᴇʟᴘ Cᴏɴᴛ. @Brutal_Support_Chat
+📥 Fᴏʀ Hᴇʟᴘ Cᴏɴᴛ. @Brutal_Support
 """
 
     PROGRESS_BAR = """<b>\n
@@ -105,7 +105,7 @@ For Example :-
 ┣⪼ ⏳️ Dᴏɴᴇ : {0}%
 ┣⪼ 🚀 Sᴩᴇᴇᴅ: {3}/s
 ┣⪼ 🔥 Bᴏᴛ Bʏ: @MisterBrutal
-╰━━━━━━━━━━━━━━━━━━━➣
+╰━━━━━━━━━━━━━━━━━━━━➣
 
 <b>⦿ Dᴇᴠᴇʟᴏᴘᴇʀ:</b> <a href=https://t.me/MisterBrutal> Bʀᴜᴛᴀʟ 😎</a>
 </b>"""
