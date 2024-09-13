@@ -20,7 +20,7 @@ async def start(client, message):
         InlineKeyboardButton(
             '🍁 Uᴩᴅᴀᴛᴇꜱ', url='https://t.me/MisterBrutal'),
         InlineKeyboardButton(
-            '🌿 Sᴜᴩᴩᴏʀᴛ', url='https://t.me/Brutal_Support_Chat')
+            '🌿 Sᴜᴩᴩᴏʀᴛ', url='https://t.me/Brutal_Support')
     ], [
         InlineKeyboardButton('👨‍🏭 Aʙᴏᴜᴛ', callback_data='about'),
         InlineKeyboardButton('❗ Hᴇʟᴩ', callback_data='help')
@@ -69,7 +69,7 @@ async def cb_handler(client, query: CallbackQuery):
                 InlineKeyboardButton(
                     '🍁 Uᴩᴅᴀᴛᴇꜱ', url='https://t.me/MisterBrutal'),
                 InlineKeyboardButton(
-                    '🌿 Sᴜᴩᴩᴏʀᴛ', url='https://t.me/Brutal_Support_Chat')
+                    '🌿 Sᴜᴩᴩᴏʀᴛ', url='https://t.me/Brutal_Support')
             ], [
                 InlineKeyboardButton('💁‍♂️ Aʙᴏᴜᴛ', callback_data='about'),
                 InlineKeyboardButton('❗ Hᴇʟᴩ', callback_data='help')
