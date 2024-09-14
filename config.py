@@ -100,12 +100,12 @@ For Example :-
 """
 
     PROGRESS_BAR = """<b>\n
-╭━━❰Bʀᴜᴛᴀʟ Rᴇɴᴀᴍɪɴɢ Rᴇᴘᴏʀᴛ❱━➣
+╭━❰Bʀᴜᴛᴀʟ Rᴇɴᴀᴍɪɴɢ Rᴇᴘᴏʀᴛ❱━➣
 ┣⪼ 🗃️ Sɪᴢᴇ: {1} | {2}
 ┣⪼ ⏳️ Dᴏɴᴇ : {0}%
 ┣⪼ 🚀 Sᴩᴇᴇᴅ: {3}/s
 ┣⪼ 🔥 Bᴏᴛ Bʏ: @MisterBrutal
 ╰━━━━━━━━━━━━━━━━━━━━➣
 
-<b>⦿ Dᴇᴠᴇʟᴏᴘᴇʀ:</b> <a href=https://t.me/MisterBrutal> Bʀᴜᴛᴀʟ 😎</a>
+<b>⦿ Dᴇᴠᴇʟᴏᴘᴇʀ:</b> @MisterBrutal
 </b>"""
