@@ -1,5 +1,5 @@
 telethon
-pyrogram
+pyrogram==2.0.106
 TgCrypto
 motor
 dnspython
