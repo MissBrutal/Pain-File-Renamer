@@ -2,7 +2,6 @@ import logging
 import logging.config
 import warnings
 from config import Config
-from aiohttp import web
 from pytz import timezone
 from datetime import datetime
 import asyncio
