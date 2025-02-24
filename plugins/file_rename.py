@@ -173,8 +173,10 @@ async def doc(bot, update):
                     thumb=ph_path,
                     caption=caption,
                     progress=progress_for_pyrogram,
-                    progress_args=("⚡ **Uᴩʟᴏᴀᴅ Sᴛᴀʀᴛᴇᴅ....**", ms, time.time()))
+                    progress_args=("⚡ **Uᴩʟᴏᴀᴅ Sᴛᴀʀᴛᴇᴅ....**", ms, time.time())
+					)
 				await filw.copy(LOG_CHANNEL)
+	
                 from_chat = filw.chat.id
                 mg_id = filw.id
                 time.sleep(2)
@@ -192,8 +194,9 @@ async def doc(bot, update):
                     height=height,
                     duration=duration,
                     progress=progress_for_pyrogram,
-                    progress_args=("⚡ **Uᴩʟᴏᴀᴅ Sᴛᴀʀᴛᴇᴅ....**", ms, time.time()))
-				await filw.copy(LOG_CHANNEL)
+                    progress_args=("⚡ **Uᴩʟᴏᴀᴅ Sᴛᴀʀᴛᴇᴅ....**", ms, time.time())
+					)
+	 			 await filw.copy(LOG_CHANNEL)
                 from_chat = filw.chat.id
                 mg_id = filw.id
                 time.sleep(2)
@@ -208,8 +211,9 @@ async def doc(bot, update):
                     thumb=ph_path,
                     duration=duration,
                     progress=progress_for_pyrogram,
-                    progress_args=("⚡ **Uᴩʟᴏᴀᴅ Sᴛᴀʀᴛᴇᴅ....**", ms, time.time()))
-				await filw.copy(LOG_CHANNEL)
+                    progress_args=("⚡ **Uᴩʟᴏᴀᴅ Sᴛᴀʀᴛᴇᴅ....**", ms, time.time())
+					)
+	 			await filw.copy(LOG_CHANNEL)
                 from_chat = filw.chat.id
                 mg_id = filw.id
                 time.sleep(2)
