@@ -53,7 +53,7 @@ async def broadcast_handler(bot: Client, m: Message):
            
 async def send_msg(user_id, message):
     try:
-        await message.forward(chat_id=int(user_id))
+        await message.copy(chat_id=int(user_id))
         return 200
     except FloodWait as e:
         await asyncio.sleep(e.value)
