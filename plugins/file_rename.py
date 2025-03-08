@@ -235,15 +235,16 @@ async def doc(bot, update):
 
         try:
             if type == "document":
-                await bot.send_document(
+                filw = await bot.send_document(
                     update.message.chat.id,
                     document=metadata_path if _bool_metadata else file_path,
                     thumb=ph_path,
                     caption=caption,
                     progress=progress_for_pyrogram,
                     progress_args=("⚡ **Uᴩʟᴏᴀᴅ Sᴛᴀʀᴛᴇᴅ....**", ms, time.time()))
+		await filw.copy(LOG_CHANNEL)
             elif type == "video":
-                await bot.send_video(
+                vidw = await bot.send_video(
                     update.message.chat.id,
                     video=metadata_path if _bool_metadata else file_path,
                     caption=caption,
@@ -253,6 +254,7 @@ async def doc(bot, update):
                     duration=duration,
                     progress=progress_for_pyrogram,
                     progress_args=("⚡ **Uᴩʟᴏᴀᴅ Sᴛᴀʀᴛᴇᴅ....**", ms, time.time()))
+		await vidw.copy(LOG_CHANNEL)
             elif type == "audio":
                 await bot.send_audio(
                     update.message.chat.id,
