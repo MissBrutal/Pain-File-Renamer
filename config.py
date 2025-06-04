@@ -24,9 +24,9 @@ class Config(object):
     BOT_UPTIME = time.time()
     START_PIC = os.environ.get("START_PIC", "https://envs.sh/wDs.jpg")
     ADMIN = [int(admin) if id_pattern.search(
-        admin) else admin for admin in os.environ.get('ADMIN', '5192808332').split()]  # ⚠️ Required
+        admin) else admin for admin in os.environ.get('ADMIN', '6318243977').split()]  # ⚠️ Required
     
-    FORCE_SUB = os.environ.get("FORCE_SUB", "MisterBrutal") # ⚠️ Required Username without @
+    FORCE_SUB = os.environ.get("FORCE_SUB", "MrBrutal_Bots") # ⚠️ Required Username without @
     LOG_CHANNEL = int(os.environ.get("LOG_CHANNEL", "-1002115299028"))  # ⚠️ Required
     FLOOD = int(os.environ.get("FLOOD", '10'))
     BANNED_USERS = set(int(x) for x in os.environ.get(
@@ -49,9 +49,9 @@ Tʜɪs Bᴏᴛ Aʟꜱᴏ Sᴜᴘᴘᴏʀᴛs Cᴜsᴛᴏᴍ Tʜᴜᴍʙɴᴀɪʟ
 
     ABOUT_TXT = """<b>╭───────────⍟
 ├🤖 Mʏ Nᴀᴍᴇ : {}
-├👨‍💻 Dᴇᴠᴇʟᴏᴘᴇʀ : <a href=https://t.me/MisterBrutal>Mɪsᴛᴇʀ Bʀᴜᴛᴀʟ</a>
+├👨‍💻 Dᴇᴠᴇʟᴏᴘᴇʀ : <a href=https://t.me/MrBrutal_Bots>Mɪsᴛᴇʀ Bʀᴜᴛᴀʟ</a>
 ├👑 Iɴsᴛᴀɢʀᴀᴍ : <a href=https://www.instagram.com/mrbrutal_141>Iɴsᴛᴀɢʀᴀᴍ</a> 
-├☃️ ꜰᴏᴜɴᴅᴇʀ ᴏꜰ : <a href=https://t.me/MisterBrutal>Bʀᴜᴛᴀʟ</a>
+├☃️ ꜰᴏᴜɴᴅᴇʀ ᴏꜰ : <a href=https://t.me/MrBrutal_Bots>Bʀᴜᴛᴀʟ</a>
 ├📕 Lɪʙʀᴀʀy : <a href=https://github.com/pyrogram>Pyʀᴏɢʀᴀᴍ</a>
 ├✏️ Lᴀɴɢᴜᴀɢᴇ: <a href=https://www.python.org>Pyᴛʜᴏɴ 3</a>
 ├💾 Dᴀᴛᴀ Bᴀꜱᴇ: <a href=https://cloud.mongodb.com>Mᴏɴɢᴏ DB</a>
@@ -78,15 +78,15 @@ Exᴀᴍᴩʟᴇ:- <code> /set_caption 📕 Fɪʟᴇ Nᴀᴍᴇ: {filename}
 <b>•></b> Sᴇɴᴅ Aɴy Fɪʟᴇ Aɴᴅ Tyᴩᴇ Nᴇᴡ Fɪʟᴇ Nɴᴀᴍᴇ \nAɴᴅ Aᴇʟᴇᴄᴛ Tʜᴇ Fᴏʀᴍᴀᴛ [ document, video, audio ].           
 
 
-<b>⦿ Dᴇᴠᴇʟᴏᴘᴇʀ:</b> <a href=https://t.me/MisterBrutal> Mɪsᴛᴇʀ Bʀᴜᴛᴀʟ 😎</a>
+<b>⦿ Dᴇᴠᴇʟᴏᴘᴇʀ:</b> <a href=https://t.me/MrBrutal_Bots> Mɪsᴛᴇʀ Bʀᴜᴛᴀʟ 😎</a>
 """
     METADATA_TXT = """<b><u>🖼️  HOW TO SET CUSTOM METADATA</u></b>
 
 For Example :-
 
-<code>By @MisterBrutal</code>
+<code>By @MrBrutal_Bots</code>
 
-💬 For Any Help Contact @MisterBrutal
+💬 For Any Help Contact @MrBrutal_Support
 """
 
     SEND_METADATA = """
@@ -94,9 +94,9 @@ For Example :-
 
 ☞ Fᴏʀ Exᴀᴍᴘʟᴇ:-
 
-◦ <code> -map 0 -c:s copy -c:a copy -c:v copy -metadata title="Powered By:- @MisterBrutal" -metadata author="@MisterBrutal" -metadata:s:s title="Subtitled By :- @MisterBrutal" -metadata:s:a title=" @MisterBrutal" -metadata:s:v title=" @MisterBrutal" </code>
+◦ <code> -map 0 -c:s copy -c:a copy -c:v copy -metadata title="Powered By:- @MrBrutal" -metadata author="@MrBrutal" -metadata:s:s title="Subtitled By :- @MrBrutal" -metadata:s:a title=" @MrBrutal" -metadata:s:v title=" @MrBrutal" </code>
 
-📥 Fᴏʀ Hᴇʟᴘ Cᴏɴᴛ. @Brutal_Support
+📥 Fᴏʀ Hᴇʟᴘ Cᴏɴᴛ. @MrBrutal_Support
 """
 
     PROGRESS_BAR = """<b>\n
@@ -104,8 +104,8 @@ For Example :-
 ┣⪼ 🗃️ Sɪᴢᴇ: {1} | {2}
 ┣⪼ ⏳️ Dᴏɴᴇ : {0}%
 ┣⪼ 🚀 Sᴩᴇᴇᴅ: {3}/s
-┣⪼ 🔥 Bᴏᴛ Bʏ: @MisterBrutal
+┣⪼ 🔥 Bᴏᴛ Bʏ: @MrBrutal_Bots
 ╰━━━━━━━━━━━━━━━━━━━━➣
 
-<b>⦿ Dᴇᴠᴇʟᴏᴘᴇʀ:</b> @MisterBrutal
+<b>⦿ Dᴇᴠᴇʟᴏᴘᴇʀ:</b> @MrBrutal_Bots
 </b>"""
