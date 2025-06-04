@@ -18,14 +18,14 @@ async def start(client, message):
     await db.add_user(client, message)
     button = InlineKeyboardMarkup([[
         InlineKeyboardButton(
-            '🍁 Uᴩᴅᴀᴛᴇꜱ', url='https://t.me/MisterBrutal'),
+            '🍁 Uᴩᴅᴀᴛᴇꜱ', url='https://t.me/MrBrutal_Bots'),
         InlineKeyboardButton(
-            '🌿 Sᴜᴩᴩᴏʀᴛ', url='https://t.me/Brutal_Support')
+            '🌿 Sᴜᴩᴩᴏʀᴛ', url='https://t.me/MrBrutal_Support')
     ], [
         InlineKeyboardButton('👨‍🏭 Aʙᴏᴜᴛ', callback_data='about'),
         InlineKeyboardButton('❗ Hᴇʟᴩ', callback_data='help')
     ],
-         [InlineKeyboardButton('🎗️Jᴏɪɴ Bᴀᴄᴋᴜᴘ Cʜᴀɴɴᴇʟ🎗️', url='https://t.me/Geeky_Updates')]                         
+         [InlineKeyboardButton('🎗️Jᴏɪɴ Bᴀᴄᴋᴜᴘ Cʜᴀɴɴᴇʟ🎗️', url='https://t.me/Filmaze_Updates')]                         
                                   ])
     if Config.START_PIC:
         await message.reply_photo(Config.START_PIC, caption=Txt.START_TXT.format(user.mention), reply_markup=button)
@@ -67,14 +67,14 @@ async def cb_handler(client, query: CallbackQuery):
             disable_web_page_preview=True,
             reply_markup=InlineKeyboardMarkup([[
                 InlineKeyboardButton(
-                    '🍁 Uᴩᴅᴀᴛᴇꜱ', url='https://t.me/MisterBrutal'),
+                    '🍁 Uᴩᴅᴀᴛᴇꜱ', url='https://t.me/MrBrutal_Bots'),
                 InlineKeyboardButton(
-                    '🌿 Sᴜᴩᴩᴏʀᴛ', url='https://t.me/Brutal_Support')
+                    '🌿 Sᴜᴩᴩᴏʀᴛ', url='https://t.me/MrBrutal_Support')
             ], [
                 InlineKeyboardButton('💁‍♂️ Aʙᴏᴜᴛ', callback_data='about'),
                 InlineKeyboardButton('❗ Hᴇʟᴩ', callback_data='help')
             ],
-                [InlineKeyboardButton('🎗️Jᴏɪɴ Bᴀᴄᴋᴜᴘ Cʜᴀɴɴᴇʟ🎗️', url='https://t.me/Geeky_Updates')]                              
+                [InlineKeyboardButton('🎗️Jᴏɪɴ Bᴀᴄᴋᴜᴘ Cʜᴀɴɴᴇʟ🎗️', url='https://t.me/Filmaze_Updates')]                              
                                               ])
         )
     elif data == "help":
