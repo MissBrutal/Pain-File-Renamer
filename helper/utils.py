@@ -119,3 +119,51 @@ def add_prefix_suffix(input_string, prefix='', suffix=''):
 
     else:
         return input_string
+
+
+async def is_req_subscribed(bot, user_id, rqfsub_channels):
+    btn = []
+    for ch_id in rqfsub_channels:
+        if await db.has_joined_channel(user_id, ch_id):
+            continue
+        try:
+            member = await bot.get_chat_member(ch_id, user_id)
+            if member.status != enums.ChatMemberStatus.BANNED:
+                await db.add_join_req(user_id, ch_id)
+                continue
+        except UserNotParticipant:
+            pass
+        except Exception as e:
+            logger.error(f"Error checking membership in {ch_id}: {e}")
+
+        try:
+            chat   = await bot.get_chat(ch_id)
+            invite = await bot.create_chat_invite_link(
+                ch_id,
+                creates_join_request=True
+            )
+            btn.append([InlineKeyboardButton(f"⛔️ Join {chat.title}", url=invite.invite_link)])
+        except ChatAdminRequired:
+            logger.warning(f"Bot not admin in {ch_id}")
+        except Exception as e:
+            logger.warning(f"Invite link error for {ch_id}: {e}")
+            
+    return btn
+
+
+async def is_subscribed(bot, user_id, fsub_channels):
+    btn = []
+    for channel_id in fsub_channels:
+        try:
+            chat = await bot.get_chat(int(channel_id))
+            await bot.get_chat_member(channel_id, user_id)
+        except UserNotParticipant:
+            try:
+                invite = await bot.create_chat_invite_link(channel_id, creates_join_request=False)
+                btn.append([InlineKeyboardButton(f"📢 Join {chat.title}", url=invite.invite_link)])
+            except Exception as e:
+                logger.warning(f"Failed to create invite for {channel_id}: {e}")
+        except Exception as e:
+            logger.exception(f"is_subscribed error for {channel_id}: {e}")
+            pass
+    return btn
