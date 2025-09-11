@@ -5,6 +5,7 @@ from helper.database import db
 from config import Config, Txt
 import humanize
 from time import sleep
+from utils import is_req_subscribed, is_subscribed
 
 
 @Client.on_message(filters.private & filters.command("start"))
