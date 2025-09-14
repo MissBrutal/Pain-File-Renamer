@@ -12,3 +12,4 @@ pyromod
 ffmpeg-python
 shortzy
 pytz
+logging

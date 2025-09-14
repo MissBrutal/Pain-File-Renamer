@@ -1,16 +1,28 @@
+import random
+import logging
 from pyrogram import Client, filters
 from pyrogram.errors import FloodWait
-from pyrogram.types import InlineKeyboardButton, InlineKeyboardMarkup, Message, CallbackQuery
+from pyrogram.types import InlineKeyboardButton, InlineKeyboardMarkup, Message, CallbackQuery, enums
 from helper.database import db
 from config import Config, Txt
 import humanize
 from time import sleep
-from .helper/utils import is_req_subscribed, is_subscribed
+from helper.utils import is_req_subscribed, is_subscribed, log_error
+import asyncio
+
+logging.basicConfig(level=logging.ERROR)
+logger = logging.getLogger(__name__)
 
 
 @Client.on_message(filters.private & filters.command("start"))
 async def start(client, message):
-
+    try:
+        await message.react(emoji = random.choice(["👋","😊","😍","✨","⚡️","💥","🔥",]), big = True)
+    except:
+        await message.react(emoji = "⚡️", big= True)
+    m = await message.reply_text("⏳")
+    await asyncio.sleep(0.4)
+    await m.delete() 
     if message.from_user.id in Config.BANNED_USERS:
         await message.reply_text("Sorry, You are banned.")
         return
@@ -25,9 +37,8 @@ async def start(client, message):
     ], [
         InlineKeyboardButton('👨‍🏭 Aʙᴏᴜᴛ', callback_data='about'),
         InlineKeyboardButton('❗ Hᴇʟᴩ', callback_data='help')
-    ],
-         [InlineKeyboardButton('🎗️Jᴏɪɴ Bᴀᴄᴋᴜᴘ Cʜᴀɴɴᴇʟ🎗️', url='https://t.me/Filmaze_Updates')]                         
-                                  ])
+    ]                         
+    ])
     if Config.START_PIC:
         await message.reply_photo(Config.START_PIC, caption=Txt.START_TXT.format(user.mention), reply_markup=button)
     else:
@@ -36,6 +47,39 @@ async def start(client, message):
 
 @Client.on_message(filters.private & (filters.document | filters.audio | filters.video))
 async def rename_start(client, message):
+    user_id = message.from_user.id
+    AUTH_CHANNELS = Config.AUTH_CHANNELS
+    AUTH_REQ_CHANNELS = Config.AUTH_REQ_CHANNELS
+    FSUB_PICS = Config.FSUB_PICS
+    try:
+        btn = []
+        if AUTH_CHANNELS:
+            btn += await is_subscribed(client, user_id, AUTH_CHANNELS)
+        if AUTH_REQ_CHANNELS:
+            btn += await is_req_subscribed(client, user_id, AUTH_REQ_CHANNELS)
+        if btn:
+            btn.append([
+                InlineKeyboardButton("♻️ ᴛʀʏ ᴀɢᴀɪɴ ♻️", callback_data=f"checksub")
+                ])
+        reply_markup = InlineKeyboardMarkup(btn)
+        photo = random.choice(FSUB_PICS) if FSUB_PICS else "https://graph.org/file/7478ff3eac37f4329c3d8.jpg"
+        caption = (
+                f"👋 ʜᴇʟʟᴏ {message.from_user.mention}\n\n"
+                "🛑 ʏᴏᴜ ᴍᴜsᴛ ᴊᴏɪɴ ᴛʜᴇ ʀᴇǫᴜɪʀᴇᴅ ᴄʜᴀɴɴᴇʟs ᴛᴏ ᴄᴏɴᴛɪɴᴜᴇ.\n"
+                "👉 ᴊᴏɪɴ ᴀʟʟ ᴛʜᴇ ʙᴇʟᴏᴡ ᴄʜᴀɴɴᴇʟs ᴀɴᴅ ᴛʀʏ ᴀɢᴀɪɴ."
+            )
+        await message.reply_photo(
+                photo=photo,
+                caption=caption,
+                reply_markup=reply_markup,
+                parse_mode=enums.ParseMode.HTML
+            )
+        return
+
+    except Exception as e:
+        await log_error(client, f"❗️ Force Sub Error:\n\n{repr(e)}")
+        logger.error(f"❗️ Force Sub Error:\n\n{repr(e)}")
+        
     file = getattr(message, message.media.value)
     filename = file.file_name
     filesize = humanize.naturalsize(file.file_size)
@@ -74,9 +118,8 @@ async def cb_handler(client, query: CallbackQuery):
             ], [
                 InlineKeyboardButton('💁‍♂️ Aʙᴏᴜᴛ', callback_data='about'),
                 InlineKeyboardButton('❗ Hᴇʟᴩ', callback_data='help')
-            ],
-                [InlineKeyboardButton('🎗️Jᴏɪɴ Bᴀᴄᴋᴜᴘ Cʜᴀɴɴᴇʟ🎗️', url='https://t.me/Filmaze_Updates')]                              
-                                              ])
+            ]                             
+            ])
         )
     elif data == "help":
         await query.message.edit_text(

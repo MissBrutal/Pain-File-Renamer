@@ -1,4 +1,5 @@
 import re
+from os import environ
 import os
 import time
 
@@ -18,23 +19,25 @@ class Config(object):
     
     # database config
     DB_NAME = os.environ.get("DB_NAME", "Snow_User_Data")
-    DB_URL = os.environ.get("DB_URL", "mongodb+srv://mhsm:mhsm@cluster0.j9figvh.mongodb.net/?retryWrites=true&w=majority")  # ⚠️ Required
+    DB_URL = os.environ.get("DB_URL", "mongodb+srv://mhsm:mhsm@cluster0.j9figvh.mongodb.net/")  # ⚠️ Required
 
     # other configs
     BOT_UPTIME = time.time()
     START_PIC = os.environ.get("START_PIC", "https://envs.sh/wDs.jpg")
+    FSUB_PICS = (environ.get('FSUB_PICS', 'https://graph.org/file/7478ff3eac37f4329c3d8.jpg https://graph.org/file/56b5deb73f3b132e2bb73.jpg')).split()  # Fsub pic
+
     ADMIN = [int(admin) if id_pattern.search(
-        admin) else admin for admin in os.environ.get('ADMIN', '6318243977').split()]  # ⚠️ Required
-    
-    FORCE_SUB = os.environ.get("FORCE_SUB", "MrBrutal_Bots") # ⚠️ Required Username without @
+        admin) else admin for admin in os.environ.get('ADMIN', '6318243977').split()]  
+
     LOG_CHANNEL = int(os.environ.get("LOG_CHANNEL", "-1002115299028"))  # ⚠️ Required
     FLOOD = int(os.environ.get("FLOOD", '10'))
     BANNED_USERS = set(int(x) for x in os.environ.get(
         "BANNED_USERS", "1234567890").split())
     
-    AUTH_CHANNEL = [int(ch) if id_pattern.search(ch) else ch for ch in environ.get('AUTH_CHANNEL', '').split()]
-    AUTH_REQ_CHANNELS = [int(ch) if id_pattern.search(ch) else ch for ch in environ.get('AUTH_REQ_CHANNELS', '').split()]
+    AUTH_CHANNEL = [int(ch) if id_pattern.search(ch) else ch for ch in environ.get('AUTH_CHANNEL', '-1002650577614').split()]
+    AUTH_REQ_CHANNELS = [int(ch) if id_pattern.search(ch) else ch for ch in environ.get('AUTH_REQ_CHANNELS', '-1003019860065').split()]
     
+
     # wes response configuration
     WEBHOOK = bool(os.environ.get("WEBHOOK", True))
     PORT = int(os.environ.get("PORT", "8080"))

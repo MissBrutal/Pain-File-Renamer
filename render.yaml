@@ -1,11 +1,11 @@
 services:
   - type: web
     plan: free
-    name: SigmaRenameBot
+    name: PainRenameBot
     env: python
     buildCommand: pip install -r requirements.txt
     startCommand: python bot.py
-    repo: https://github.com/Snowball-01/Sigma-Rename-Bot
+    repo: https://github.com/MissBrutal/Pain-File-Renamer
     branch: main
     autoDeploy: false
     envVars:

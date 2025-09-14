@@ -1,12 +1,27 @@
 import math
+import logging
+from pyrogram import enums
 import time
 from datetime import datetime
 from pytz import timezone
 from config import Config, Txt
 from pyrogram.types import InlineKeyboardButton, InlineKeyboardMarkup
+from pyrogram.errors import UserNotParticipant, ChatAdminRequired
 import re
 
+logging.basicConfig(level=logging.ERROR)
+logger = logging.getLogger(__name__)
 
+async def log_error(client, error_message):
+    LOG_CHANNEL = Config.LOG_CHANNEL
+    try:
+        await client.send_message(
+            chat_id=LOG_CHANNEL, 
+            text=f"<b>⚠️ Error Log:</b>\n<code>{error_message}</code>"
+        )
+    except Exception as e:
+        print(f"Failed to log error: {e}")
+        
 async def progress_for_pyrogram(current, total, ud_type, message, start):
     now = time.time()
     diff = now - start
@@ -123,31 +138,30 @@ def add_prefix_suffix(input_string, prefix='', suffix=''):
 
 async def is_req_subscribed(bot, user_id, rqfsub_channels):
     btn = []
-    for ch_id in rqfsub_channels:
-        if await db.has_joined_channel(user_id, ch_id):
-            continue
+    for channel_id in rqfsub_channels:
         try:
-            member = await bot.get_chat_member(ch_id, user_id)
+            member = await bot.get_chat_member(channel_id, user_id)
             if member.status != enums.ChatMemberStatus.BANNED:
-                await db.add_join_req(user_id, ch_id)
                 continue
+            else:
+                await bot.send_message(user_id, text="Sorry, You are banned.")
         except UserNotParticipant:
             pass
         except Exception as e:
-            logger.error(f"Error checking membership in {ch_id}: {e}")
+            logger.error(f"Error checking membership in {channel_id}: {e}")
 
         try:
-            chat   = await bot.get_chat(ch_id)
+            chat   = await bot.get_chat(channel_id)
             invite = await bot.create_chat_invite_link(
-                ch_id,
+                channel_id,
                 creates_join_request=True
             )
             btn.append([InlineKeyboardButton(f"⛔️ Join {chat.title}", url=invite.invite_link)])
         except ChatAdminRequired:
-            logger.warning(f"Bot not admin in {ch_id}")
+            logger.warning(f"Bot not admin in {channel_id}")
         except Exception as e:
-            logger.warning(f"Invite link error for {ch_id}: {e}")
-            
+            logger.warning(f"Invite link error for {channel_id}: {e}")
+
     return btn
 
 
