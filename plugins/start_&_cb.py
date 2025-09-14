@@ -17,11 +17,11 @@ logger = logging.getLogger(__name__)
 @Client.on_message(filters.private & filters.command("start"))
 async def start(client, message):
     try:
-        await message.react(emoji = random.choice(["👋","😊","😍","✨","⚡️","💥","🔥",]), big = True)
+        await message.react(emoji=random.choice(Config.REACTIONS), big=True)
     except:
-        await message.react(emoji = "⚡️", big= True)
+        pass
     m = await message.reply_text("⏳")
-    await asyncio.sleep(0.4)
+    await asyncio.sleep(0.5)
     await m.delete() 
     if message.from_user.id in Config.BANNED_USERS:
         await message.reply_text("Sorry, You are banned.")
@@ -48,15 +48,15 @@ async def start(client, message):
 @Client.on_message(filters.private & (filters.document | filters.audio | filters.video))
 async def rename_start(client, message):
     user_id = message.from_user.id
-    AUTH_CHANNELS = Config.AUTH_CHANNELS
-    AUTH_REQ_CHANNELS = Config.AUTH_REQ_CHANNELS
+    # AUTH_CHANNELS = Config.AUTH_CHANNELS
+    # AUTH_REQ_CHANNELS = Config.AUTH_REQ_CHANNELS
     FSUB_PICS = Config.FSUB_PICS
     try:
         btn = []
-        if AUTH_CHANNELS:
-            btn += await is_subscribed(client, user_id, AUTH_CHANNELS)
-        if AUTH_REQ_CHANNELS:
-            btn += await is_req_subscribed(client, user_id, AUTH_REQ_CHANNELS)
+        if Config.AUTH_CHANNELS:
+            btn += await is_subscribed(client, user_id, Config.AUTH_CHANNELS)
+        if Config.AUTH_REQ_CHANNELS:
+            btn += await is_req_subscribed(client, user_id, Config.AUTH_REQ_CHANNELS)
         if btn:
             btn.append([
                 InlineKeyboardButton("♻️ ᴛʀʏ ᴀɢᴀɪɴ ♻️", callback_data=f"checksub")

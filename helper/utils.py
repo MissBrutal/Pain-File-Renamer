@@ -167,17 +167,13 @@ async def is_req_subscribed(bot, user_id, rqfsub_channels):
 
 async def is_subscribed(bot, user_id, fsub_channels):
     btn = []
+    user_id = int(user_id)
     for channel_id in fsub_channels:
+        chat = await bot.get_chat(int(channel_id))
         try:
-            chat = await bot.get_chat(int(channel_id))
             await bot.get_chat_member(channel_id, user_id)
         except UserNotParticipant:
-            try:
-                invite = await bot.create_chat_invite_link(channel_id, creates_join_request=False)
-                btn.append([InlineKeyboardButton(f"📢 Join {chat.title}", url=invite.invite_link)])
-            except Exception as e:
-                logger.warning(f"Failed to create invite for {channel_id}: {e}")
+            btn.append([InlineKeyboardButton(f'Join {chat.title}', url=chat.invite_link)])
         except Exception as e:
-            logger.exception(f"is_subscribed error for {channel_id}: {e}")
-            pass
+            logger.error(f"Error checking membership in {channel_id}: {e}")
     return btn
