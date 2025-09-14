@@ -34,11 +34,11 @@ class Config(object):
     BANNED_USERS = set(int(x) for x in os.environ.get(
         "BANNED_USERS", "1234567890").split())
     
-    AUTH_CHANNEL = [int(ch) if id_pattern.search(ch) else ch for ch in environ.get('AUTH_CHANNEL', '-1002650577614').split()]
+    AUTH_CHANNELS = [int(ch) if id_pattern.search(ch) else ch for ch in environ.get('AUTH_CHANNELS', '-1002650577614').split()]
     AUTH_REQ_CHANNELS = [int(ch) if id_pattern.search(ch) else ch for ch in environ.get('AUTH_REQ_CHANNELS', '-1003019860065').split()]
     
 
-    # wes response configuration
+    # web response configuration
     WEBHOOK = bool(os.environ.get("WEBHOOK", True))
     PORT = int(os.environ.get("PORT", "8080"))
 

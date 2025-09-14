@@ -36,10 +36,10 @@ class Bot(Client):
         me = await self.get_me()
         self.mention = me.mention
         self.username = me.username
-        self.force_channel = Config.FORCE_SUB
-        if Config.FORCE_SUB:
+        self.force_channel = Config.AUTH_CHANNELS
+        if Config.AUTH_CHANNELS:
             try:
-                link = await self.export_chat_invite_link(Config.FORCE_SUB)
+                link = await self.export_chat_invite_link(Config.AUTH_CHANNELS[0])
                 self.invitelink = link
             except Exception as e:
                 logging.warning(e)
