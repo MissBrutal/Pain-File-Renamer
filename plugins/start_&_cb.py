@@ -61,10 +61,10 @@ async def rename_start(client, message):
             btn += await is_req_subscribed(client, user_id, AUTH_REQ_CHANNELS)
         if btn:
             username = (await client.get_me()).username
-            # if message.command[1]:
-            #     btn.append([InlineKeyboardButton("♻️ Try Again ♻️", url=f"https://t.me/{username}?start={message.command[1]}")])
-            # else:
-            btn.append([InlineKeyboardButton("♻️ Try Again ♻️", url=f"https://t.me/{username}?start=true")])
+            if message.command[1]:
+                btn.append([InlineKeyboardButton("♻️ Try Again ♻️", url=f"https://t.me/{username}?start={message.command[1]}")])
+            else:
+                btn.append([InlineKeyboardButton("♻️ Try Again ♻️", url=f"https://t.me/{username}?start=true")])
 
             reply_markup = InlineKeyboardMarkup(btn)
             photo = random.choice(FSUB_PICS) if FSUB_PICS else "https://graph.org/file/7478ff3eac37f4329c3d8.jpg"
