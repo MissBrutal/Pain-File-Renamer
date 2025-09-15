@@ -36,8 +36,7 @@ class Config(object):
     
     AUTH_CHANNELS = [int(ch) if id_pattern.search(ch) else ch for ch in environ.get('AUTH_CHANNELS', '-1002650577614').split()]
     AUTH_REQ_CHANNELS = [int(ch) if id_pattern.search(ch) else ch for ch in environ.get('AUTH_REQ_CHANNELS', '').split()]
-    
-    REACTIONS = ["🤝", "😇", "🤗", "😍", "👍", "🎅", "😐", "🥰", "🤩", "😱", "🤣", "😘", "👏", "😛", "😈", "🎉", "⚡️", "🫡", "🤓", "😎", "🏆", "🔥", "🤭", "🌚", "🆒", "👻", "😁"]
+
     # web response configuration
     WEBHOOK = bool(os.environ.get("WEBHOOK", True))
     PORT = int(os.environ.get("PORT", "8080"))

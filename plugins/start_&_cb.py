@@ -16,8 +16,10 @@ logger = logging.getLogger(__name__)
 
 @Client.on_message(filters.private & filters.command("start"))
 async def start(client, message):
+    REACTIONS = ["🤝", "😇", "🤗", "😍", "👍", "😐", "🥰", "🤩","😘", "👏", "😛", "🎉", "⚡️", "😎", "🏆", "🔥", "🤭", "🆒", "👻", "😁"]
+    emoji = random.choice(REACTIONS)
     try:
-        await message.react(emoji=random.choice(Config.REACTIONS), big=True)
+        await message.react(emoji=emoji, big=True)
     except:
         pass
     m = await message.reply_text("⏳")
@@ -48,33 +50,36 @@ async def start(client, message):
 @Client.on_message(filters.private & (filters.document | filters.audio | filters.video))
 async def rename_start(client, message):
     user_id = message.from_user.id
-    # AUTH_CHANNELS = Config.AUTH_CHANNELS
-    # AUTH_REQ_CHANNELS = Config.AUTH_REQ_CHANNELS
+    AUTH_CHANNELS = Config.AUTH_CHANNELS
+    AUTH_REQ_CHANNELS = Config.AUTH_REQ_CHANNELS
     FSUB_PICS = Config.FSUB_PICS
     try:
         btn = []
-        if Config.AUTH_CHANNELS:
-            btn += await is_subscribed(client, user_id, Config.AUTH_CHANNELS)
-        if Config.AUTH_REQ_CHANNELS:
-            btn += await is_req_subscribed(client, user_id, Config.AUTH_REQ_CHANNELS)
+        if AUTH_CHANNELS:
+            btn += await is_subscribed(client, user_id, AUTH_CHANNELS)
+        if AUTH_REQ_CHANNELS:
+            btn += await is_req_subscribed(client, user_id, AUTH_REQ_CHANNELS)
         if btn:
-            btn.append([
-                InlineKeyboardButton("♻️ ᴛʀʏ ᴀɢᴀɪɴ ♻️", callback_data=f"checksub")
-                ])
-        reply_markup = InlineKeyboardMarkup(btn)
-        photo = random.choice(FSUB_PICS) if FSUB_PICS else "https://graph.org/file/7478ff3eac37f4329c3d8.jpg"
-        caption = (
+            username = (await client.get_me()).username
+            # if message.command[1]:
+            #     btn.append([InlineKeyboardButton("♻️ Try Again ♻️", url=f"https://t.me/{username}?start={message.command[1]}")])
+            # else:
+            btn.append([InlineKeyboardButton("♻️ Try Again ♻️", url=f"https://t.me/{username}?start=true")])
+
+            reply_markup = InlineKeyboardMarkup(btn)
+            photo = random.choice(FSUB_PICS) if FSUB_PICS else "https://graph.org/file/7478ff3eac37f4329c3d8.jpg"
+            caption = (
                 f"👋 ʜᴇʟʟᴏ {message.from_user.mention}\n\n"
                 "🛑 ʏᴏᴜ ᴍᴜsᴛ ᴊᴏɪɴ ᴛʜᴇ ʀᴇǫᴜɪʀᴇᴅ ᴄʜᴀɴɴᴇʟs ᴛᴏ ᴄᴏɴᴛɪɴᴜᴇ.\n"
                 "👉 ᴊᴏɪɴ ᴀʟʟ ᴛʜᴇ ʙᴇʟᴏᴡ ᴄʜᴀɴɴᴇʟs ᴀɴᴅ ᴛʀʏ ᴀɢᴀɪɴ."
             )
-        await message.reply_photo(
+            await message.reply_photo(
                 photo=photo,
                 caption=caption,
                 reply_markup=reply_markup,
                 parse_mode=enums.ParseMode.HTML
             )
-        return
+            return
 
     except Exception as e:
         await log_error(client, f"❗️ Force Sub Error:\n\n{repr(e)}")
