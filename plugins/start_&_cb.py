@@ -16,14 +16,12 @@ logger = logging.getLogger(__name__)
 
 @Client.on_message(filters.private & filters.command("start"))
 async def start(client, message):
-    REACTIONS = ["🤝", "😇", "🤗", "😍", "👍", "😐", "🥰", "🤩","😘", "👏", "😛", "🎉", "⚡️", "😎", "🏆", "🔥", "🤭", "🆒", "👻", "😁"]
-    emoji = random.choice(REACTIONS)
     try:
-        await message.react(emoji=emoji, big=True)
+        await message.react(emoji="🔥", big=True)
     except:
         pass
     m = await message.reply_text("⏳")
-    await asyncio.sleep(0.5)
+    await asyncio.sleep(0.4)
     await m.delete() 
     if message.from_user.id in Config.BANNED_USERS:
         await message.reply_text("Sorry, You are banned.")
@@ -80,7 +78,7 @@ async def rename_start(client, message):
             return
 
         except Exception as e:
-            await log_error(client, f"❗️ Force Sub Error:\n\n{repr(e)}")
+            await log_error(client, f"❗️ Force Sub Error:\n\n{repr(e)} {AUTH_CHANNEL}")
             logger.error(f"❗️ Force Sub Error:\n\n{repr(e)}")
         
     file = getattr(message, message.media.value)
