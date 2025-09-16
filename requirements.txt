@@ -7,7 +7,6 @@ Pillow
 aiohttp
 pytz
 humanize
-pyromod
 ffmpeg-python
 shortzy
 pytz
