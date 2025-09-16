@@ -11,4 +11,4 @@ ffmpeg-python
 shortzy
 pytz
 logging
-pyrofork
+pyrofork==2.3.59
