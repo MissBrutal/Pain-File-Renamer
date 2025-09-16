@@ -29,24 +29,6 @@ async def start(client, message):
 
     user = message.from_user
     await db.add_user(client, message)
-    button = InlineKeyboardMarkup([[
-        InlineKeyboardButton(
-            '🍁 Uᴩᴅᴀᴛᴇꜱ', url='https://t.me/MrBrutal_Bots'),
-        InlineKeyboardButton(
-            '🌿 Sᴜᴩᴩᴏʀᴛ', url='https://t.me/MrBrutal_Support')
-    ], [
-        InlineKeyboardButton('👨‍🏭 Aʙᴏᴜᴛ', callback_data='about'),
-        InlineKeyboardButton('❗ Hᴇʟᴩ', callback_data='help')
-    ]                         
-    ])
-    if Config.START_PIC:
-        await message.reply_photo(Config.START_PIC, caption=Txt.START_TXT.format(user.mention), reply_markup=button)
-    else:
-        await message.reply_text(text=Txt.START_TXT.format(user.mention), reply_markup=button, disable_web_page_preview=True)
-
-
-@Client.on_message(filters.private & (filters.document | filters.audio | filters.video))
-async def rename_start(client, message):
     user_id = message.from_user.id
     AUTH_CHANNEL = Config.AUTH_CHANNEL
     AUTH_CHANNELS = Config.AUTH_CHANNELS
@@ -80,7 +62,24 @@ async def rename_start(client, message):
         except Exception as e:
             await log_error(client, f"❗️ Force Sub Error:\n\n{repr(e)} {AUTH_CHANNEL}")
             logger.error(f"❗️ Force Sub Error:\n\n{repr(e)}")
-        
+    button = InlineKeyboardMarkup([[
+        InlineKeyboardButton(
+            '🍁 Uᴩᴅᴀᴛᴇꜱ', url='https://t.me/MrBrutal_Bots'),
+        InlineKeyboardButton(
+            '🌿 Sᴜᴩᴩᴏʀᴛ', url='https://t.me/MrBrutal_Support')
+    ], [
+        InlineKeyboardButton('👨‍🏭 Aʙᴏᴜᴛ', callback_data='about'),
+        InlineKeyboardButton('❗ Hᴇʟᴩ', callback_data='help')
+    ]                         
+    ])
+    if Config.START_PIC:
+        await message.reply_photo(Config.START_PIC, caption=Txt.START_TXT.format(user.mention), reply_markup=button)
+    else:
+        await message.reply_text(text=Txt.START_TXT.format(user.mention), reply_markup=button, disable_web_page_preview=True)
+
+
+@Client.on_message(filters.private & (filters.document | filters.audio | filters.video))
+async def rename_start(client, message):    
     file = getattr(message, message.media.value)
     filename = file.file_name
     filesize = humanize.naturalsize(file.file_size)
