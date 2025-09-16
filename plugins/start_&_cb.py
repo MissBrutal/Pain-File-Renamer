@@ -50,22 +50,20 @@ async def start(client, message):
 @Client.on_message(filters.private & (filters.document | filters.audio | filters.video))
 async def rename_start(client, message):
     user_id = message.from_user.id
+    AUTH_CHANNEL = Config.AUTH_CHANNEL
     AUTH_CHANNELS = Config.AUTH_CHANNELS
     AUTH_REQ_CHANNELS = Config.AUTH_REQ_CHANNELS
     FSUB_PICS = Config.FSUB_PICS
-    try:
-        btn = []
-        if AUTH_CHANNELS:
-            btn += await is_subscribed(client, user_id, AUTH_CHANNELS)
-        if AUTH_REQ_CHANNELS:
-            btn += await is_req_subscribed(client, user_id, AUTH_REQ_CHANNELS)
-        if btn:
-            username = (await client.get_me()).username
-            if message.command[1]:
-                btn.append([InlineKeyboardButton("♻️ Try Again ♻️", url=f"https://t.me/{username}?start={message.command[1]}")])
-            else:
-                btn.append([InlineKeyboardButton("♻️ Try Again ♻️", url=f"https://t.me/{username}?start=true")])
-
+    btn = []
+    if AUTH_CHANNEL:
+        try:
+            btn = await is_subscribed(client, message, AUTH_CHANNEL)
+            if btn:
+                username = (await client.get_me()).username
+                if message.command[1]:
+                    btn.append([InlineKeyboardButton("♻️ Try Again ♻️", url=f"https://t.me/{username}?start={message.command[1]}")])
+                else:
+                    btn.append([InlineKeyboardButton("♻️ Try Again ♻️", url=f"https://t.me/{username}?start=true")])
             reply_markup = InlineKeyboardMarkup(btn)
             photo = random.choice(FSUB_PICS) if FSUB_PICS else "https://graph.org/file/7478ff3eac37f4329c3d8.jpg"
             caption = (
@@ -81,9 +79,9 @@ async def rename_start(client, message):
             )
             return
 
-    except Exception as e:
-        await log_error(client, f"❗️ Force Sub Error:\n\n{repr(e)}")
-        logger.error(f"❗️ Force Sub Error:\n\n{repr(e)}")
+        except Exception as e:
+            await log_error(client, f"❗️ Force Sub Error:\n\n{repr(e)}")
+            logger.error(f"❗️ Force Sub Error:\n\n{repr(e)}")
         
     file = getattr(message, message.media.value)
     filename = file.file_name
