@@ -1,5 +1,4 @@
 telethon
-pyrogram
 TgCrypto
 motor
 dnspython
@@ -13,3 +12,4 @@ ffmpeg-python
 shortzy
 pytz
 logging
+pyrofork
