@@ -29,39 +29,39 @@ async def start(client, message):
 
     user = message.from_user
     await db.add_user(client, message)
-    user_id = message.from_user.id
-    AUTH_CHANNEL = Config.AUTH_CHANNEL
-    AUTH_CHANNELS = Config.AUTH_CHANNELS
-    AUTH_REQ_CHANNELS = Config.AUTH_REQ_CHANNELS
-    FSUB_PICS = Config.FSUB_PICS
-    btn = []
-    if AUTH_CHANNEL:
-        try:
-            btn = await is_subscribed(client, message, AUTH_CHANNEL)
-            if btn:
-                username = (await client.get_me()).username
-                if message.command[1]:
-                    btn.append([InlineKeyboardButton("♻️ Try Again ♻️", url=f"https://t.me/{username}?start={message.command[1]}")])
-                else:
-                    btn.append([InlineKeyboardButton("♻️ Try Again ♻️", url=f"https://t.me/{username}?start=true")])
-            reply_markup = InlineKeyboardMarkup(btn)
-            photo = random.choice(FSUB_PICS) if FSUB_PICS else "https://graph.org/file/7478ff3eac37f4329c3d8.jpg"
-            caption = (
-                f"👋 ʜᴇʟʟᴏ {message.from_user.mention}\n\n"
-                "🛑 ʏᴏᴜ ᴍᴜsᴛ ᴊᴏɪɴ ᴛʜᴇ ʀᴇǫᴜɪʀᴇᴅ ᴄʜᴀɴɴᴇʟs ᴛᴏ ᴄᴏɴᴛɪɴᴜᴇ.\n"
-                "👉 ᴊᴏɪɴ ᴀʟʟ ᴛʜᴇ ʙᴇʟᴏᴡ ᴄʜᴀɴɴᴇʟs ᴀɴᴅ ᴛʀʏ ᴀɢᴀɪɴ."
-            )
-            await message.reply_photo(
-                photo=photo,
-                caption=caption,
-                reply_markup=reply_markup,
-                parse_mode=enums.ParseMode.HTML
-            )
-            return
+    # user_id = message.from_user.id
+    # AUTH_CHANNEL = Config.AUTH_CHANNEL
+    # AUTH_CHANNELS = Config.AUTH_CHANNELS
+    # AUTH_REQ_CHANNELS = Config.AUTH_REQ_CHANNELS
+    # FSUB_PICS = Config.FSUB_PICS
+    # btn = []
+    # if AUTH_CHANNEL:
+    #     try:
+    #         btn = await is_subscribed(client, message, AUTH_CHANNEL)
+    #         if btn:
+    #             username = (await client.get_me()).username
+    #             if message.command[1]:
+    #                 btn.append([InlineKeyboardButton("♻️ Try Again ♻️", url=f"https://t.me/{username}?start={message.command[1]}")])
+    #             else:
+    #                 btn.append([InlineKeyboardButton("♻️ Try Again ♻️", url=f"https://t.me/{username}?start=true")])
+    #         reply_markup = InlineKeyboardMarkup(btn)
+    #         photo = random.choice(FSUB_PICS) if FSUB_PICS else "https://graph.org/file/7478ff3eac37f4329c3d8.jpg"
+    #         caption = (
+    #             f"👋 ʜᴇʟʟᴏ {message.from_user.mention}\n\n"
+    #             "🛑 ʏᴏᴜ ᴍᴜsᴛ ᴊᴏɪɴ ᴛʜᴇ ʀᴇǫᴜɪʀᴇᴅ ᴄʜᴀɴɴᴇʟs ᴛᴏ ᴄᴏɴᴛɪɴᴜᴇ.\n"
+    #             "👉 ᴊᴏɪɴ ᴀʟʟ ᴛʜᴇ ʙᴇʟᴏᴡ ᴄʜᴀɴɴᴇʟs ᴀɴᴅ ᴛʀʏ ᴀɢᴀɪɴ."
+    #         )
+    #         await message.reply_photo(
+    #             photo=photo,
+    #             caption=caption,
+    #             reply_markup=reply_markup,
+    #             parse_mode=enums.ParseMode.HTML
+    #         )
+    #         return
 
-        except Exception as e:
-            await log_error(client, f"❗️ Force Sub Error:\n\n{repr(e)} {AUTH_CHANNEL}")
-            logger.error(f"❗️ Force Sub Error:\n\n{repr(e)}")
+    #     except Exception as e:
+    #         await log_error(client, f"❗️ Force Sub Error:\n\n{repr(e)} {AUTH_CHANNEL}")
+    #         logger.error(f"❗️ Force Sub Error:\n\n{repr(e)}")
     button = InlineKeyboardMarkup([[
         InlineKeyboardButton(
             '🍁 Uᴩᴅᴀᴛᴇꜱ', url='https://t.me/MrBrutal_Bots'),

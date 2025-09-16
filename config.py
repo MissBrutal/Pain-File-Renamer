@@ -28,7 +28,7 @@ class Config(object):
 
     ADMIN = [int(admin) if id_pattern.search(
         admin) else admin for admin in os.environ.get('ADMIN', '6318243977').split()]  
-
+    FORCE_SUB = os.environ.get("FORCE_SUB", "MrBrutal_Bots")  # Channel username without @
     LOG_CHANNEL = int(os.environ.get("LOG_CHANNEL", "-1002115299028"))  # ⚠️ Required
     FLOOD = int(os.environ.get("FLOOD", '10'))
     BANNED_USERS = set(int(x) for x in os.environ.get(
